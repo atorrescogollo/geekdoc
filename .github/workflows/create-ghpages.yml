@@ -3,8 +3,6 @@ name: Create GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -13,10 +11,10 @@ jobs:
       - uses: actions/checkout@v2
       - run: docker build -t generator .
       - run: |
-          rm -rf $PWD/docs
           docker run -v $PWD/docs:/src/site/public generator
       - run: |
          git config --global user.name 'Bot'
          git config --global user.email 'atorrescogollo@gmail.com'
+         git stash && git checkout ghpages && rm -rf docs/ && git stash pop
          git add docs/ && git commit -m "Autodoc"
-         git push
+         git push origin ghpages
