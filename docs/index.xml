@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Alvaro Torres Cogollo - Blog &amp; Wiki</title>
-    <link>$%7BBASEURL%7D/</link>
+    <link>/geekdoc/</link>
     <description>Recent content on Alvaro Torres Cogollo - Blog &amp; Wiki</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 06 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="$%7BBASEURL%7D/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="/geekdoc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello Geekdoc</title>
-      <link>$%7BBASEURL%7D/posts/hello_geekdoc/</link>
+      <link>/geekdoc/posts/hello_geekdoc/</link>
       <pubDate>Mon, 06 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>$%7BBASEURL%7D/posts/hello_geekdoc/</guid>
+      <guid>/geekdoc/posts/hello_geekdoc/</guid>
       <description>This is the first release of the Geekdoc theme.
 Dolor sit, sumo unique argument um no. Gracie nominal id xiv. Romanesque acclimates investiture. Ornateness bland it ex enc, est yeti am bongo detract re. Pro ad prompts feud gait, quid exercise emeritus bis e. In pro quints consequent, denim fastidious copious quo ad. Stet probates in duo.
 Amalia id per in minimum facility, quid facet modifier ea ma. Ill um select ma ad, en ferric patine sentient vim.</description>
@@ -19,19 +19,19 @@ Amalia id per in minimum facility, quid facet modifier ea ma. Ill um select ma a
     
     <item>
       <title>Offensive Tor Toolkit</title>
-      <link>$%7BBASEURL%7D/projects/offensive-tor-toolkit/</link>
+      <link>/geekdoc/projects/offensive-tor-toolkit/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>$%7BBASEURL%7D/projects/offensive-tor-toolkit/</guid>
+      <guid>/geekdoc/projects/offensive-tor-toolkit/</guid>
       <description>Documentación acerca del proyecto Offensive Tor Toolkit</description>
     </item>
     
     <item>
       <title>Pfsense</title>
-      <link>$%7BBASEURL%7D/wiki/pfsense/</link>
+      <link>/geekdoc/wiki/pfsense/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>$%7BBASEURL%7D/wiki/pfsense/</guid>
+      <guid>/geekdoc/wiki/pfsense/</guid>
       <description>Documentación acerca de Pfsense</description>
     </item>
     

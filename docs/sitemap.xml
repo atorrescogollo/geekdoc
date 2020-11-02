@@ -3,42 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>$%7BBASEURL%7D/posts/</loc>
+    <loc>/geekdoc/posts/</loc>
     <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/</loc>
+    <loc>/geekdoc/</loc>
     <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/posts/hello_geekdoc/</loc>
+    <loc>/geekdoc/posts/hello_geekdoc/</loc>
     <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/categories/</loc>
+    <loc>/geekdoc/categories/</loc>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/projects/offensive-tor-toolkit/</loc>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/</loc>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/wiki/pfsense/</loc>
+    <loc>/geekdoc/wiki/pfsense/</loc>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/projects/</loc>
+    <loc>/geekdoc/projects/</loc>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/tags/</loc>
+    <loc>/geekdoc/tags/</loc>
   </url>
   
   <url>
-    <loc>$%7BBASEURL%7D/wiki/</loc>
+    <loc>/geekdoc/wiki/</loc>
   </url>
   
 </urlset>
