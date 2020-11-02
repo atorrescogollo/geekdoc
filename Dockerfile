@@ -11,7 +11,7 @@ RUN apk add --update npm git python3 alpine-sdk \
 WORKDIR /src/site
 
 COPY config.yaml ./
-RUN sed -i 's@^baseURL:.*$@baseURL: ${BASEURL}@g' config.yaml
+RUN sed -i 's@^baseURL:.*$@baseURL: '${BASEURL}'@g' config.yaml
 
 COPY layouts/ ./layouts/
 COPY data/ ./data/
