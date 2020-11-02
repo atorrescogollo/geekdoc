@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker build -t generator .
+      - run: docker build -t generator --build-arg BASEURL=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}') .
       - run: |
           docker run -v $PWD/docs:/src/site/public generator
       - run: |
          git config --global user.name 'Bot'
          git config --global user.email 'atorrescogollo@gmail.com'
-         git stash && git checkout ghpages && rm -rf docs/ && git stash pop
+         git stash && git checkout -B ghpages && rm -rf docs/ && git stash pop
          git add docs/ && git commit -m "Autodoc"
          git push origin ghpages

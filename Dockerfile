@@ -1,4 +1,5 @@
 FROM klakegg/hugo:alpine
+ARG BASEURL=/
 
 RUN apk add --update npm git python3 alpine-sdk \
     && hugo new site site && mkdir /output \
@@ -10,6 +11,8 @@ RUN apk add --update npm git python3 alpine-sdk \
 WORKDIR /src/site
 
 COPY config.yaml ./
+RUN sed -i 's@^baseURL:.*$@baseURL: ${BASEURL}@g' config.yaml
+
 COPY layouts/ ./layouts/
 COPY data/ ./data/
 COPY content/ ./content/
