@@ -1,0 +1,23 @@
+---
+baseURL: /
+title: Alvaro Torres Cogollo - Blog & Wiki
+theme: hugo-geekdoc
+pygmentsUseClasses: true
+pygmentsCodeFences: true
+
+# Geekdoc configuration
+disablePathToLower: true
+enableGitInfo: false
+
+# Needed for mermaid shortcodes
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    startLevel: 1
+    endLevel: 9
+
+params:
+  geekdocToC: 3
+  geekdocSearch: true

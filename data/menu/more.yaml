@@ -1,0 +1,9 @@
+---
+more:
+  - name: Blog
+    ref: "/posts"
+    icon: "notification"
+  - name: "GitHub Profile"
+    ref: "https://github.com/atorrescogollo"
+    external: true
+    icon: "github"
