@@ -1,5 +1,5 @@
 ---
 title: Projects
-geekdocFlatSection: true
+geekdocHidden: false
 ---
 {{< toc-tree >}}

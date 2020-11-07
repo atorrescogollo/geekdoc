@@ -1,5 +1,5 @@
 ---
 title: Wiki
-geekdocFlatSection: true
+geekdocHidden: false
 ---
 {{< toc-tree >}}
