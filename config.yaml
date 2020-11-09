@@ -21,3 +21,4 @@ markup:
 params:
   geekdocToC: 3
   geekdocSearch: true
+  geekdocLogo: logo.png

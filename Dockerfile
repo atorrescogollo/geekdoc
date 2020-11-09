@@ -10,7 +10,8 @@ RUN apk add --update npm git python3 alpine-sdk \
 
 WORKDIR /src/site
 
-COPY config.yaml ./
+COPY config.yaml entrypoint.sh ./
+ENTRYPOINT /src/site/entrypoint.sh
 RUN sed -i 's@^baseURL:.*$@baseURL: '${BASEURL}'@g' config.yaml
 
 COPY layouts/ ./layouts/
