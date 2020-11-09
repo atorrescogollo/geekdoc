@@ -1,4 +1,4 @@
-FROM klakegg/hugo:alpine
+FROM klakegg/hugo:0.78.0-alpine
 ARG BASEURL=/
 
 RUN apk add --update npm git python3 alpine-sdk \
