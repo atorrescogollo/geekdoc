@@ -9,12 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo >>$GITHUB_ENV BASEURL=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print "/"$2}')
-      - run: docker build -t generator --build-arg BASEURL="${BASEURL}" .
-      - run: |
+      - name: Retrieve BASEURL from GITHUB_REPOSITORY
+        run: echo >>$GITHUB_ENV BASEURL=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print "/"$2}')
+      - name: Build site generator
+        run: docker build -t generator --build-arg BASEURL="${BASEURL}" .
+      - name: Recreate SPA in ghpages branch
+        run: |
           git fetch && git checkout ghpages
-          docker run -v $PWD/docs:/src/site/public generator
-      - run: |
+          sudo rm -rf docs/ && docker run -v $PWD/docs:/src/site/public generator
+      - name: Commit the new SPA
+        run: |
           git config --global user.name 'Bot'
           git config --global user.email 'atorrescogollo@gmail.com'
           git add docs/ && git commit -m "Autodoc"
