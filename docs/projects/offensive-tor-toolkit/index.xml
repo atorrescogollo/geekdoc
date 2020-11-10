@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>atorrescogollo - Blog &amp; Wikis</title>
-    <link>/geekdoc/</link>
-    <description>Recent content on atorrescogollo - Blog &amp; Wikis</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/geekdoc/index.xml" rel="self" type="application/rss+xml" />
+    <title>Offensive Tor Toolkit on atorrescogollo - Blog &amp; Wikis</title>
+    <link>/geekdoc/projects/offensive-tor-toolkit/</link>
+    <description>Recent content in Offensive Tor Toolkit on atorrescogollo - Blog &amp; Wikis</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="/geekdoc/projects/offensive-tor-toolkit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started</title>
       <link>/geekdoc/projects/offensive-tor-toolkit/getting_started/</link>

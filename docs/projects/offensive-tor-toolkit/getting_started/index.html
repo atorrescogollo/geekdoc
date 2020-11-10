@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hello Geekdoc">
+<meta name="description" content="Getting Started">
 
-<title>Hello Geekdoc | atorrescogollo - Blog &amp; Wikis</title>
+<title>Getting Started | atorrescogollo - Blog &amp; Wikis</title>
 
 <link rel="icon" href="/geekdoc/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -20,10 +20,16 @@
 <link rel="preload" as="font" href="/geekdoc/fonts/GeekdocIcons.woff2" type="font/woff2" crossorigin="anonymous">
 
 <link rel="preload" href="/geekdoc/main.min.css" as="style">
-<link rel="stylesheet" href="/geekdoc/main.min.css" media="screen">
+<link rel="stylesheet" href="/geekdoc/main.min.css" media="all">
+
+<link rel="preload" href="/geekdoc/mobile.min.css" as="style">
+<link rel="stylesheet" href="/geekdoc/mobile.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/geekdoc/print.min.css" as="style">
+<link rel="stylesheet" href="/geekdoc/print.min.css" media="print">
 
 <link rel="preload" href="/geekdoc/custom.css" as="style">
-<link rel="stylesheet" href="/geekdoc/custom.css" media="screen">
+<link rel="stylesheet" href="/geekdoc/custom.css" media="all">
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
@@ -44,7 +50,7 @@
         
         <a class="gdoc-header__link" href="/geekdoc">
             <span class="gdoc-brand flex align-center">
-                <img class="gdoc-brand__img" src="/geekdoc/logo.png" alt="atorrescogollo - Blog &amp; Wikis" width=38 height=38>
+                <img class="gdoc-brand__img" src="/geekdoc/logo.png" alt="" width=38 height=38>
                 atorrescogollo - Blog &amp; Wikis
             </span>
         </a>
@@ -106,6 +112,22 @@
 
             
             
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+            
+        
+            
+            
+            
+        
+    </ul>
+
+            
             </li>
             
             
@@ -127,31 +149,6 @@
             
 
             
-            
-                
-    
-
-    <ul class="gdoc-nav__list">
-        
-            
-            
-            <li>
-            
-                <span class="flex">
-                    <a href="/geekdoc/wiki/pfsense/" class="gdoc-nav__entry ">
-                        Pfsense
-                    </a>
-                </span>
-            
-
-            
-            
-            </li>
-            
-            
-        
-    </ul>
-
             
             </li>
             
@@ -243,18 +240,60 @@
 
             <div class="gdoc-page">
                 
-    <article class="gdoc-markdown gdoc-post">
-      <header class="gdoc-post__header">
-        <h1 class="gdoc-post__title">Hello Geekdoc</h1>
-        <div class="gdoc-post__date">
-            <svg class="icon date"><use xlink:href="#date"></use></svg>
-            <time datetime="2020-01-06T00:00:00Z">
-                
-                Jan 6, 2020
-            </time>
-        </div>
-      </header>
-      <div>
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <span>
+        
+        <span class="breadcrumb">
+            <svg class="icon path"><use xlink:href="#path"></use></svg>
+            
+            
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        <a href='/geekdoc/'></a> / <a href='/geekdoc/projects/'>Projects</a> / <a href='/geekdoc/projects/offensive-tor-toolkit/'>Offensive Tor Toolkit</a> / Getting Started
+    
+
+    
+
+    
+
+    
+
+        </span>
+        
+    </span>
+    <span>
+        
+    </span>
+</div>
+
+
+    <article class="gdoc-markdown">
+        <h1>Getting Started</h1>
         
 
 
@@ -262,12 +301,19 @@
     
 
 
-<p>This is the first release of the Geekdoc theme.</p>
-<p>Dolor sit, sumo unique argument um no. Gracie nominal id xiv. Romanesque acclimates investiture. Ornateness bland it ex enc, est yeti am bongo detract re. Pro ad prompts feud gait, quid exercise emeritus bis e. In pro quints consequent, denim fastidious copious quo ad. Stet probates in duo.</p>
-<p>Amalia id per in minimum facility, quid facet modifier ea ma. Ill um select ma ad, en ferric patine sentient vim. Per expendable foreordained interpretations cu, maxim sole pertinacity in ram. Que no rota alters, ad sea sues exercise main rum, cu diam mas facility sea.</p>
+<p><a href="https://github.com/atorrescogollo/offensive-tor-toolkit"><strong>Offensive Tor Toolkit</strong></a> is written in <a href="https://golang.org">Golang</a>, a language that stands out for its good performance. <a href="https://github.com/atorrescogollo/offensive-tor-toolkit">Offensive Tor Toolkit</a> makes use of the following libraries:</p>
+<ul>
+<li><strong><a href="https://github.com/ipsn/go-libtor"><code>ipsn/go-libtor</code></a></strong>: Self-contained Tor from Go.</li>
+<li><strong><a href="https://github.com/cretz/bine"><code>cretz/bine</code></a></strong>: Go API for using and controlling Tor.</li>
+</ul>
+<h1 id="preparation">Preparation</h1>
+<p>In order to make the compilation, you can <strong>build a docker image</strong> as follows:</p>
+<pre><code>$ docker build -t offensive-tor-toolkit .
+$ docker run -v $(pwd)/dist/:/dist/ -it --rm offensive-tor-toolkit
+</code></pre><p>At this moment, <a href="https://github.com/atorrescogollo/offensive-tor-toolkit">Offensive Tor Toolkit</a> tools are available in your <strong><code>dist/</code></strong> directory.</p>
+<p><strong>Go to <a href="../usage">Usage section</a> for the next steps.</strong></p>
 
 
-      </div>
     </article>
 
                 
@@ -304,7 +350,7 @@
 
 
 
-<script defer src="/geekdoc/js/en.search.min.js"></script>
+<script defer src="/geekdoc/js/en.search.min.63e52c8703f03a9ea301a6491c120c6b3d581cedb3621540b4af7068ac45b60b.js"></script>
 
 
 

@@ -3,30 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/geekdoc/posts/</loc>
+  </url>
+  
+  <url>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/getting_started/</loc>
+  </url>
+  
+  <url>
     <loc>/geekdoc/projects/offensive-tor-toolkit/</loc>
   </url>
   
   <url>
-    <loc>/geekdoc/posts/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/usage/</loc>
   </url>
   
   <url>
     <loc>/geekdoc/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/geekdoc/posts/hello_geekdoc/</loc>
-    <lastmod>2020-01-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/geekdoc/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>/geekdoc/wiki/pfsense/</loc>
   </url>
   
   <url>
