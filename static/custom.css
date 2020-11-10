@@ -3,14 +3,16 @@ a, .gdoc-toc a, .gdoc-post__readmore a {
   color: #00425b;
 }
 a:visited, .gdoc-toc a:visited, .gdoc-post__readmore a:visited {
-  color: #88b2c2;
+  color: #44778a;
 }
 
 /* nav bar */
 .gdoc-nav__entry.is-active, .gdoc-nav__entry:hover {
   text-decoration-style: solid!important;
 }
-
+.gdoc-nav nav {
+  width: 20rem;
+}
 
 /* site header */
 .gdoc-header { background: #05668D; border-color: #044862; }
@@ -19,6 +21,11 @@ a:visited, .gdoc-toc a:visited, .gdoc-post__readmore a:visited {
 
 /* page links */
 .gdoc-page__footer a, .gdoc-page__footer a:visited, .gdoc-page__header a, .gdoc-page__header a:visited { color: #044862; }
+
+/* toc-entries */
+.gdoc-toc__entry {
+  font-weight: bold;
+}
 
 /* site footer */
 .gdoc-footer { background: #044862; color: #ffffff; }
