@@ -10,8 +10,27 @@ a:visited, .gdoc-toc a:visited, .gdoc-post__readmore a:visited {
 .gdoc-nav__entry.is-active, .gdoc-nav__entry:hover {
   text-decoration-style: solid!important;
 }
-.gdoc-nav nav {
-  width: 20rem;
+
+/* search bar */
+.gdoc-search a {
+  font-size: .800rem;
+}
+
+/* Not mobiles */
+@media screen and (min-width:39rem) {
+  .gdoc-nav nav {
+    width: 17rem;
+    padding-right: 2rem;
+    padding-left: 0;
+  }
+  .gdoc-nav {
+    margin-right: 2rem;
+    border-right-style: solid;
+    border-color:#f8f9fa;
+  }
+  .gdoc-search__list {
+    padding-right: 0;
+  }
 }
 
 /* site header */
