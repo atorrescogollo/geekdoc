@@ -7,6 +7,20 @@ a:visited, .gdoc-toc a:visited, .gdoc-post__readmore a:visited {
 }
 
 /* nav bar */
+section > .gdoc-nav__list > li > .gdoc-nav__list {
+  padding-left: 2px;
+}
+section > .gdoc-nav__list > li > .gdoc-nav__list > li {
+  padding-left: 10px;
+  margin-left: 5px;
+  border-left: #d7dbdf;
+  border-left-style: solid;
+  border-width: 0.5px;
+}
+section > .gdoc-nav__list > li > .gdoc-nav__list > li > .flex > .gdoc-nav__entry {
+  color: #044862;
+  font-weight: bold;
+}
 .gdoc-nav__entry.is-active, .gdoc-nav__entry:hover {
   text-decoration-style: solid!important;
 }
