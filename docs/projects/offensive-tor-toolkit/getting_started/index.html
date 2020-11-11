@@ -119,9 +119,86 @@
         
             
             
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/getting_started/" class="gdoc-nav__entry is-active">
+                        Getting Started
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
             
         
             
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/reverse-shell-over-tor/" class="gdoc-nav__entry ">
+                        reverse-shell-over-tor
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/hidden-bind-shell/" class="gdoc-nav__entry ">
+                        hidden-bind-shell
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/hidden-portforwarding/" class="gdoc-nav__entry ">
+                        hidden-portforwarding
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/tcp2tor-proxy/" class="gdoc-nav__entry ">
+                        tcp2tor-proxy
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
             
             
         
@@ -311,7 +388,20 @@
 <pre><code>$ docker build -t offensive-tor-toolkit .
 $ docker run -v $(pwd)/dist/:/dist/ -it --rm offensive-tor-toolkit
 </code></pre><p>At this moment, <a href="https://github.com/atorrescogollo/offensive-tor-toolkit">Offensive Tor Toolkit</a> tools are available in your <strong><code>dist/</code></strong> directory.</p>
-<p><strong>Go to <a href="../usage">Usage section</a> for the next steps.</strong></p>
+<blockquote>
+<p>You can notice that every single tool has its base64 associated file. This can be useful when transferring the file in text format.</p>
+</blockquote>
+<p>Once <a href="https://github.com/atorrescogollo/offensive-tor-toolkit"><strong>Offensive Tor Toolkit</strong></a> tools are compiled, you can <strong>upload the needed file to the victim</strong>.</p>
+<blockquote>
+<p>In order to preserve your anonymity, you can use a temporary file upload service such as <a href="https://uguu.se/">Uguu</a>, <a href="https://www.file.io/">file.io</a> or <a href="https://file.re/">FILE.re</a>.</p>
+</blockquote>
+<p>Here are the main tools:</p>
+<ul>
+<li><a href="../reverse-shell-over-tor"><strong><code>reverse-shell-over-tor</code></strong></a>: Victim sends a <a href="https://www.hackingtutorials.org/networking/hacking-netcat-part-2-bind-reverse-shells/">Reverse Shell</a> to a Hidden Service.</li>
+<li><a href="../hidden-bind-shell"><strong><code>hidden-bind-shell</code></strong></a>: Victim starts up a Hidden Service with a <a href="https://www.hackingtutorials.org/networking/hacking-netcat-part-2-bind-reverse-shells/">Bind Shell</a>.</li>
+<li><a href="../hidden-portforwarding"><strong><code>hidden-portforwarding</code></strong></a>: Victim starts a Hidden Service that forwards traffic. Useful for pivoting.</li>
+<li><a href="../tcp2tor-proxy"><strong><code>tcp2tor-proxy</code></strong></a>: Victim allows another victim to access a Hidden Service through it. Useful to gaining access to victims in isolated networks.</li>
+</ul>
 
 
     </article>
@@ -350,7 +440,7 @@ $ docker run -v $(pwd)/dist/:/dist/ -it --rm offensive-tor-toolkit
 
 
 
-<script defer src="/geekdoc/js/en.search.min.63e52c8703f03a9ea301a6491c120c6b3d581cedb3621540b4af7068ac45b60b.js"></script>
+<script defer src="/geekdoc/js/en.search.min.8c69aa6d664aa1e5499c187c1e2213c9623fb119bbe65490c031fef0b968050b.js"></script>
 
 
 

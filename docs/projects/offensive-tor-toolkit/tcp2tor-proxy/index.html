@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Blog">
+<meta name="description" content="tcp2tor-proxy">
 
-<title>Blog | atorrescogollo - Blog &amp; Wikis</title>
+<title>tcp2tor-proxy | atorrescogollo - Blog &amp; Wikis</title>
 
 <link rel="icon" href="/geekdoc/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/geekdoc/custom.css" as="style">
 <link rel="stylesheet" href="/geekdoc/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="/geekdoc/posts/index.xml" title="atorrescogollo - Blog & Wikis" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -191,7 +190,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/geekdoc/projects/offensive-tor-toolkit/tcp2tor-proxy/" class="gdoc-nav__entry ">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/tcp2tor-proxy/" class="gdoc-nav__entry is-active">
                         tcp2tor-proxy
                     </a>
                 </span>
@@ -269,7 +268,7 @@
             <span class="flex">
                 <svg class="icon notification"><use xlink:href="#notification"></use></svg>
                 <a href="/geekdoc/posts/"
-                    class="gdoc-nav__entry is-active">
+                    class="gdoc-nav__entry ">
                     Blog
                 </a>
             </span>
@@ -319,6 +318,80 @@
             <div class="gdoc-page">
                 
     
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <span>
+        
+        <span class="breadcrumb">
+            <svg class="icon path"><use xlink:href="#path"></use></svg>
+            
+            
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        <a href='/geekdoc/'></a> / <a href='/geekdoc/projects/'>Projects</a> / <a href='/geekdoc/projects/offensive-tor-toolkit/'>Offensive Tor Toolkit</a> / tcp2tor-proxy
+    
+
+    
+
+    
+
+    
+
+        </span>
+        
+    </span>
+    <span>
+        
+    </span>
+</div>
+
+
+    <article class="gdoc-markdown">
+        <h1>tcp2tor-proxy</h1>
+        
+
+
+
+    
+
+
+<p>This tool allows the victim to set up a <strong>service that forwards TCP traffic to a Hidden Service</strong>. Then, an victim inside an internal network can access a Hidden Service pivoting over the victim that executes this tool.</p>
+<p>Some parameters need to be set:</p>
+<pre><code>$ ./tcp2tor-proxy -h
+Usage of tcp2tor-proxy:
+
+  -listen string
+        TCP Socket to listen on. Format: [&lt;IP&gt;]:&lt;PORT&gt; (default &quot;127.0.0.1:60101&quot;)
+  -onion-forward string
+        Hidden service to proxy. Format: &lt;ONION&gt;:&lt;PORT&gt;. This parameter is required
+  -timeout int
+        Timeout in seconds for Tor setup (default 180)
+</code></pre>
+
+    </article>
 
                 
 

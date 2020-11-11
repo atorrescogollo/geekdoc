@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Usage">
+<meta name="description" content="hidden-portforwarding">
 
-<title>Usage | atorrescogollo - Blog &amp; Wikis</title>
+<title>hidden-portforwarding | atorrescogollo - Blog &amp; Wikis</title>
 
 <link rel="icon" href="/geekdoc/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -119,9 +119,86 @@
         
             
             
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/getting_started/" class="gdoc-nav__entry ">
+                        Getting Started
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
             
         
             
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/reverse-shell-over-tor/" class="gdoc-nav__entry ">
+                        reverse-shell-over-tor
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/hidden-bind-shell/" class="gdoc-nav__entry ">
+                        hidden-bind-shell
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/hidden-portforwarding/" class="gdoc-nav__entry is-active">
+                        hidden-portforwarding
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
+            
+            
+        
+            
+            
+            <li>
+            
+                <span class="flex">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/tcp2tor-proxy/" class="gdoc-nav__entry ">
+                        tcp2tor-proxy
+                    </a>
+                </span>
+            
+
+            
+            
+            </li>
             
             
         
@@ -274,7 +351,7 @@
         
     
     
-        <a href='/geekdoc/'></a> / <a href='/geekdoc/projects/'>Projects</a> / <a href='/geekdoc/projects/offensive-tor-toolkit/'>Offensive Tor Toolkit</a> / Usage
+        <a href='/geekdoc/'></a> / <a href='/geekdoc/projects/'>Projects</a> / <a href='/geekdoc/projects/offensive-tor-toolkit/'>Offensive Tor Toolkit</a> / hidden-portforwarding
     
 
     
@@ -293,7 +370,7 @@
 
 
     <article class="gdoc-markdown">
-        <h1>Usage</h1>
+        <h1>hidden-portforwarding</h1>
         
 
 
@@ -301,8 +378,23 @@
     
 
 
-<p><code style="color: red;">UNDER CONSTRUCTION</code></p>
+<p>This tool allows the <strong>victim to set up a new Hidden Service that forwards TCP traffic to a TCP port</strong>. Then, the attacker can access the Hidden Service to access the target.</p>
+<blockquote>
+<p>If the target is a <strong>SOCKS proxy</strong>, the attacker can pivot easily through the victim to internal networks.</p>
+</blockquote>
+<p>Some parameters need to be set:</p>
+<pre><code>$ ./hidden-portforwarding -h
+Usage of hidden-portforwarding:
 
+  -data-dir string
+        Where Tor data is stored. If not defined, a directory is created
+  -forward string
+        Where the hidden service should forward packets (local port forwarding). Format: &lt;FW_IP&gt;:&lt;FW_PORT&gt;. This parameter is required
+  -hidden-port int
+        Port for onion service (default 80)
+  -timeout int
+        Timeout in seconds for Tor setup (default 180)
+</code></pre>
 
     </article>
 
@@ -340,7 +432,7 @@
 
 
 
-<script defer src="/geekdoc/js/en.search.min.63e52c8703f03a9ea301a6491c120c6b3d581cedb3621540b4af7068ac45b60b.js"></script>
+<script defer src="/geekdoc/js/en.search.min.8c69aa6d664aa1e5499c187c1e2213c9623fb119bbe65490c031fef0b968050b.js"></script>
 
 
 

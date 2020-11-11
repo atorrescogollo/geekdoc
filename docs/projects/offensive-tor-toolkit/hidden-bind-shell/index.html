@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Blog">
+<meta name="description" content="hidden-bind-shell">
 
-<title>Blog | atorrescogollo - Blog &amp; Wikis</title>
+<title>hidden-bind-shell | atorrescogollo - Blog &amp; Wikis</title>
 
 <link rel="icon" href="/geekdoc/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/geekdoc/custom.css" as="style">
 <link rel="stylesheet" href="/geekdoc/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="/geekdoc/posts/index.xml" title="atorrescogollo - Blog & Wikis" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -157,7 +156,7 @@
             <li>
             
                 <span class="flex">
-                    <a href="/geekdoc/projects/offensive-tor-toolkit/hidden-bind-shell/" class="gdoc-nav__entry ">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/hidden-bind-shell/" class="gdoc-nav__entry is-active">
                         hidden-bind-shell
                     </a>
                 </span>
@@ -269,7 +268,7 @@
             <span class="flex">
                 <svg class="icon notification"><use xlink:href="#notification"></use></svg>
                 <a href="/geekdoc/posts/"
-                    class="gdoc-nav__entry is-active">
+                    class="gdoc-nav__entry ">
                     Blog
                 </a>
             </span>
@@ -319,6 +318,82 @@
             <div class="gdoc-page">
                 
     
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <span>
+        
+        <span class="breadcrumb">
+            <svg class="icon path"><use xlink:href="#path"></use></svg>
+            
+            
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        
+        
+        
+    
+    
+        <a href='/geekdoc/'></a> / <a href='/geekdoc/projects/'>Projects</a> / <a href='/geekdoc/projects/offensive-tor-toolkit/'>Offensive Tor Toolkit</a> / hidden-bind-shell
+    
+
+    
+
+    
+
+    
+
+        </span>
+        
+    </span>
+    <span>
+        
+    </span>
+</div>
+
+
+    <article class="gdoc-markdown">
+        <h1>hidden-bind-shell</h1>
+        
+
+
+
+    
+
+
+<p>This tool allows the <strong>victim to set up a new Hidden Service that offers shells to new connections</strong>. Then, the attacker can connect to the Hidden Service to receive a shell session.</p>
+<p>Some parameters need to be set:</p>
+<pre><code>$ ./hidden-bind-shell -h
+Usage of hidden-bind-shell:
+
+  -bind-shell-program string
+        Program to execute on bind-shell (default &quot;/bin/sh&quot;)
+  -data-dir string
+        Where Tor data is stored. If not defined, a directory is created
+  -hiddensrvport int
+        Tor hidden service port where bind-shell will be started (default 80)
+  -timeout int
+        Timeout in seconds for Tor setup (default 180)
+</code></pre>
+
+    </article>
 
                 
 

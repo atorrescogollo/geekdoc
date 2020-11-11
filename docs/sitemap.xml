@@ -15,7 +15,19 @@
   </url>
   
   <url>
-    <loc>/geekdoc/projects/offensive-tor-toolkit/usage/</loc>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/reverse-shell-over-tor/</loc>
+  </url>
+  
+  <url>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/hidden-bind-shell/</loc>
+  </url>
+  
+  <url>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/hidden-portforwarding/</loc>
+  </url>
+  
+  <url>
+    <loc>/geekdoc/projects/offensive-tor-toolkit/tcp2tor-proxy/</loc>
   </url>
   
   <url>
