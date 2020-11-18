@@ -19,3 +19,5 @@ Usage of tcp2tor-proxy:
   -timeout int
         Timeout in seconds for Tor setup (default 180)
 ```
+
+See [**Remote port forwarding through Tor**](../../../posts/offensive-tor-toolkit/#remote-port-forwarding-through-tor) for a real usage example.

@@ -60,6 +60,20 @@ section > .gdoc-nav__list > li > .gdoc-nav__list > li > .flex > .gdoc-nav__entry
   font-weight: bold;
 }
 
+/* Images */
+.img-small {
+  max-width: 25em;
+  display: block;
+}
+.img-medium {
+  max-width: 45em;
+  display: block;
+}
+.img-large {
+  max-width: 65em;
+  display: block;
+}
+
 /* site footer */
 .gdoc-footer { background: #044862; color: #ffffff; }
 .gdoc-footer__link{ color: #fecf50; }

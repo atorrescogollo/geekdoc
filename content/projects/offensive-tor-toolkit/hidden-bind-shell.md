@@ -21,3 +21,5 @@ Usage of hidden-bind-shell:
   -timeout int
         Timeout in seconds for Tor setup (default 180)
 ```
+
+See [**Multi-shell access with bind shell**](../../../posts/offensive-tor-toolkit/#multi-shell-access-with-bind-shell) for a real usage example.

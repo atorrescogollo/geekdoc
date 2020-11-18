@@ -12,7 +12,6 @@ Some of this actions are described below. Click on them to see how it works:
 * [**Bind Shell**](hidden-bind-shell): The victim sets up a Hidden Service that offers a shell session.
 * [**Local Port Forwarding**](hidden-portforwarding): The victim routes TCP traffic from a Hidden Service to a port. Useful for accessing internal networks.
 * [**Remote Port Forwarding**](tcp2tor-proxy): The victim routes TCP traffic from a port to a Hidden Service. Useful for accessing Tor from victims without internet access.
-* **Others**.
 
 ## Table of Contents:
 {{< toc-tree >}}

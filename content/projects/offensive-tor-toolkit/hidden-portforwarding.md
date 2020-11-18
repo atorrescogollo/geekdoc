@@ -23,3 +23,5 @@ Usage of hidden-portforwarding:
   -timeout int
         Timeout in seconds for Tor setup (default 180)
 ```
+
+See [**Pivoting with hidden-portforwarding and Chisel**](../../../posts/offensive-tor-toolkit/#pivoting-with-hidden-portforwarding-and-chisel) for a real usage example.

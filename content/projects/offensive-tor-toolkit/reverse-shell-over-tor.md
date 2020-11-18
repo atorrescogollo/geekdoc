@@ -19,3 +19,5 @@ Usage of reverse-shell-over-tor:
   -timeout int
         Timeout in seconds for Tor setup (default 180)
 ```
+
+See [**Gaining access with reverse-shell-over-tor**](../../../posts/offensive-tor-toolkit/#gaining-access-with-reverse-shell-over-tor) for a real usage example.
