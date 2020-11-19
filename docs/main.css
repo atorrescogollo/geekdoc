@@ -384,7 +384,11 @@ img {
   padding-left: 1em;
   margin: 0;
   padding: 0;
-  list-style: none
+  list-style: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 .gdoc-nav__list ul {
   padding-left: 1rem
@@ -394,6 +398,29 @@ img {
 }
 .gdoc-nav__list .icon {
   margin-right: .25rem
+}
+.gdoc-nav__toggle {
+  display: none
+}
+.gdoc-nav__toggle ~ label {
+  cursor: pointer
+}
+.gdoc-nav__toggle ~ label .icon {
+  font-size: .7rem
+}
+.gdoc-nav__toggle:not(:checked) ~ label .icon.keyborad_arrow_down,
+.gdoc-nav__toggle:not(:checked) ~ ul {
+  display: none
+}
+.gdoc-nav__toggle:not(:checked) ~ label .icon.keyborad_arrow_left {
+  display: block
+}
+.gdoc-nav__toggle:checked ~ label .icon.keyborad_arrow_down,
+.gdoc-nav__toggle:checked ~ ul {
+  display: block
+}
+.gdoc-nav__toggle:checked ~ label .icon.keyborad_arrow_left {
+  display: none
 }
 .gdoc-nav__entry {
   flex: 1;
@@ -408,6 +435,8 @@ img {
 .gdoc-nav__entry:visited {
   color: #343a40
 }
+.gdoc-nav--main > ul > li > label,
+.gdoc-nav--main > ul > li > label > a,
 .gdoc-nav--main > ul > li > span,
 .gdoc-nav--main > ul > li > span > a {
   font-weight: 700

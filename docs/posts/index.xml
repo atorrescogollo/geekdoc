@@ -4,6 +4,18 @@
     <title>Blog on atorrescogollo - Blog &amp; Wikis</title>
     <link>/geekdoc/posts/</link>
     <description>Recent content in Blog on atorrescogollo - Blog &amp; Wikis</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/geekdoc/posts/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="/geekdoc/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Offensive Tor Toolkit PoC</title>
+      <link>/geekdoc/posts/offensive-tor-toolkit/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/geekdoc/posts/offensive-tor-toolkit/</guid>
+      <description>In this post we will be showing how to use Offensive Tor Toolkit for pentesting over Tor. This suite of tools will allow us to execute exploitation and post-exploitation tasks from the victim preserving the attacker anonymity. For more info, check the docs.
+First of all, we have the following vulnerable scenario:
+ Victim1 serves a vulnerable service to Internet. Victim2 serves a vulnerable service to the internal network and it has no access to Internet.</description>
+    </item>
+    
   </channel>
 </rss>

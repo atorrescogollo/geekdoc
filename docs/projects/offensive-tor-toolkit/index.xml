@@ -24,7 +24,7 @@ $ docker build -t offensive-tor-toolkit . $ docker run -v $(pwd)/dist/:/dist/ -i
       <guid>/geekdoc/projects/offensive-tor-toolkit/reverse-shell-over-tor/</guid>
       <description>This tool allows the victim to connect to the Hidden Service of the attacker. If the attacker starts a netcat handler, it will give him a shell session.
 Some parameters need to be set:
-$ ./reverse-shell-over-tor -h Usage of reverse-shell-over-tor: -listener string Listener address. Format: &amp;lt;ONION_ADDR&amp;gt;:&amp;lt;PORT&amp;gt; -reverse-shell-program string Program to execute on reverse-shell (default &amp;quot;/bin/sh&amp;quot;) -timeout int Timeout in seconds for Tor setup (default 180) </description>
+$ ./reverse-shell-over-tor -h Usage of reverse-shell-over-tor: -listener string Listener address. Format: &amp;lt;ONION_ADDR&amp;gt;:&amp;lt;PORT&amp;gt; -reverse-shell-program string Program to execute on reverse-shell (default &amp;quot;/bin/sh&amp;quot;) -timeout int Timeout in seconds for Tor setup (default 180) See Gaining access with reverse-shell-over-tor for a real usage example.</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@ $ ./reverse-shell-over-tor -h Usage of reverse-shell-over-tor: -listener string 
       <guid>/geekdoc/projects/offensive-tor-toolkit/hidden-bind-shell/</guid>
       <description>This tool allows the victim to set up a new Hidden Service that offers shells to new connections. Then, the attacker can connect to the Hidden Service to receive a shell session.
 Some parameters need to be set:
-$ ./hidden-bind-shell -h Usage of hidden-bind-shell: -bind-shell-program string Program to execute on bind-shell (default &amp;quot;/bin/sh&amp;quot;) -data-dir string Where Tor data is stored. If not defined, a directory is created -hiddensrvport int Tor hidden service port where bind-shell will be started (default 80) -timeout int Timeout in seconds for Tor setup (default 180) </description>
+$ ./hidden-bind-shell -h Usage of hidden-bind-shell: -bind-shell-program string Program to execute on bind-shell (default &amp;quot;/bin/sh&amp;quot;) -data-dir string Where Tor data is stored. If not defined, a directory is created -hiddensrvport int Tor hidden service port where bind-shell will be started (default 80) -timeout int Timeout in seconds for Tor setup (default 180) See Multi-shell access with bind shell for a real usage example.</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@ $ ./hidden-portforwarding -h Usage of hidden-portforwarding: -data-dir string Wh
       <guid>/geekdoc/projects/offensive-tor-toolkit/tcp2tor-proxy/</guid>
       <description>This tool allows the victim to set up a service that forwards TCP traffic to a Hidden Service. Then, an victim inside an internal network can access a Hidden Service pivoting over the victim that executes this tool.
 Some parameters need to be set:
-$ ./tcp2tor-proxy -h Usage of tcp2tor-proxy: -listen string TCP Socket to listen on. Format: [&amp;lt;IP&amp;gt;]:&amp;lt;PORT&amp;gt; (default &amp;quot;127.0.0.1:60101&amp;quot;) -onion-forward string Hidden service to proxy. Format: &amp;lt;ONION&amp;gt;:&amp;lt;PORT&amp;gt;. This parameter is required -timeout int Timeout in seconds for Tor setup (default 180) </description>
+$ ./tcp2tor-proxy -h Usage of tcp2tor-proxy: -listen string TCP Socket to listen on. Format: [&amp;lt;IP&amp;gt;]:&amp;lt;PORT&amp;gt; (default &amp;quot;127.0.0.1:60101&amp;quot;) -onion-forward string Hidden service to proxy. Format: &amp;lt;ONION&amp;gt;:&amp;lt;PORT&amp;gt;. This parameter is required -timeout int Timeout in seconds for Tor setup (default 180) See Remote port forwarding through Tor for a real usage example.</description>
     </item>
     
   </channel>
