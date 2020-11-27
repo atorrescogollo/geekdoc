@@ -2,8 +2,6 @@
 title: Wiki
 geekdocHidden: false
 ---
-<code style="color: red;">UNDER CONSTRUCTION</code>
-
-Here you will find some documentation about **procedures and configurations** of some software.
+Here you will find some documentation about **procedures and configurations** of some software and technologies.
 
 {{< toc-tree >}}
