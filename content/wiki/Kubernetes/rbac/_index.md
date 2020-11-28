@@ -40,7 +40,7 @@ $ openssl x509 -req -in my-user.csr -CA /etc/kubernetes/ssl/ca.crt -CAkey /etc/k
 # Suggestion: Deployer
 $ kubectl -n my-namespace create role deployer --verb=create,get,delete,list,update,watch,patch --resource=deployments,replicasets,statefulsets,configmaps,pods,secrets,ingresses
 # Suggestion: Developer
-$ kubectl -n my-namespace create role developer --verb=get,describe,list,watch --resource=*
+$ kubectl -n my-namespace create role developer --verb=get,list,watch --resource=*
 ```
 4. Create the **RoleBindings**:
 ```bash
