@@ -1,4 +1,4 @@
-'use strict';(function(){const input=document.querySelector('#gdoc-search-input');const results=document.querySelector('#gdoc-search-results');input.addEventListener('focus',init);input.addEventListener('keyup',search);function init(){input.removeEventListener('focus',init);input.required=true;loadScript('/geekdoc/js/flexsearch.min.js');loadScript('/geekdoc/js/en.search-data.min.99d2ae67cd525e1999f4e80ed17ee65c890648c39122df30bb570607a5cdd01d.js',function(){input.required=false;search();});}
+'use strict';(function(){const input=document.querySelector('#gdoc-search-input');const results=document.querySelector('#gdoc-search-results');input.addEventListener('focus',init);input.addEventListener('keyup',search);function init(){input.removeEventListener('focus',init);input.required=true;loadScript('/geekdoc/js/flexsearch.min.js');loadScript('/geekdoc/js/en.search-data.min.196a9cd836a6ed65b13b80e4721a678f62803af6fafa184b3ce226cfc5433481.js',function(){input.required=false;search();});}
 function search(){while(results.firstChild){results.removeChild(results.firstChild);}
 if(!input.value){console.log("empty")
 results.classList.remove("has-hits");return;}

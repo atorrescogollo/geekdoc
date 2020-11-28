@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Kubernetes RBAC">
+<meta name="description" content="Kubernetes Nginx Ingress Controller">
 
-<title>Kubernetes RBAC | atorrescogollo - Blog &amp; Wikis</title>
+<title>Kubernetes Nginx Ingress Controller | atorrescogollo - Blog &amp; Wikis</title>
 
 <link rel="icon" href="/geekdoc/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,7 @@
 <link rel="preload" href="/geekdoc/custom.css" as="style">
 <link rel="stylesheet" href="/geekdoc/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="/geekdoc/wiki/Kubernetes/rbac/index.xml" title="atorrescogollo - Blog & Wikis" />
+<link rel="alternate" type="application/rss+xml" href="/geekdoc/wiki/Kubernetes/nginx-ingress-controller/index.xml" title="atorrescogollo - Blog & Wikis" />
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
 
 </head>
@@ -465,7 +465,7 @@
         
     
     
-        <a href='/geekdoc/'></a> / <a href='/geekdoc/wiki/'>Wiki</a> / <a href='/geekdoc/wiki/Kubernetes/'>Kubernetes</a> / Kubernetes RBAC
+        <a href='/geekdoc/'></a> / <a href='/geekdoc/wiki/'>Wiki</a> / <a href='/geekdoc/wiki/Kubernetes/'>Kubernetes</a> / Kubernetes Nginx Ingress Controller
     
 
     
@@ -483,7 +483,7 @@
 </div>
 
     <article class="gdoc-markdown">
-        <h1>Kubernetes RBAC</h1>
+        <h1>Kubernetes Nginx Ingress Controller</h1>
         
 
 
@@ -491,114 +491,61 @@
     
 
 
-<p>Here you will find some recipies for <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/"><strong>configuring RBAC (Role Based Access Control)</strong></a> in your Kubernetes clusters.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="requisites">Requisites<a data-clipboard-text="/geekdoc/wiki/Kubernetes/rbac/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Requisites" href="#requisites"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<p>You should have administrative access to your cluster.</p>
-<div class="gdoc-page__anchorwrap"><h2 id="general-concepts">General concepts<a data-clipboard-text="/geekdoc/wiki/Kubernetes/rbac/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor General concepts" href="#general-concepts"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ul>
-<li><strong>Namespaces</strong>: Virtual clusters backed by the same physical cluster. They work as resource pools.</li>
-<li>Accounts: Every request needs authentication or it is considered as the anonymous user. There are two types of users:
-<ul>
-<li><strong>User Accounts</strong>: Combinations of IDs and <strong>certificates</strong> signed by the cluster CA. Click <a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/">here</a> for more info.</li>
-<li><strong>Service Accounts</strong>: <strong>Token</strong> authentication. Click <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">here</a> for more info.</li>
-</ul>
-</li>
-<li>Policies: It defines permissions for the RBAC engine. There are two types of policies:
-<ul>
-<li><strong>Roles</strong>: Permissions within a particular <strong>namespace</strong>. Click <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole">here</a> for more info.</li>
-<li><strong>ClusterRoles</strong>: Permissions within the cluster (<strong>non-namespaced</strong>). Click <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole">here</a> for more info.</li>
-</ul>
-</li>
-<li>Bindings: links Users with Policies. There are two types of bindings:
-<ul>
-<li><strong>RoleBindings</strong>: It binds any Role or ClusterRole to the same <strong>namespace</strong>. Click <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding">here</a> for more info.</li>
-<li><strong>ClusterRoleBindings</strong>: It binds any ClusterRole to <strong>all the namespaces</strong> in the cluster. Click <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding">here</a> for more info.</li>
-</ul>
-</li>
-<li><strong>Contexts</strong>: Cluster-namespace-user relationship. It only makes sense on the client&rsquo;s side.</li>
-</ul>
-<div class="gdoc-page__anchorwrap"><h2 id="creating-user-accounts-and-roles">Creating User Accounts and Roles<a data-clipboard-text="/geekdoc/wiki/Kubernetes/rbac/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Creating User Accounts and Roles" href="#creating-user-accounts-and-roles"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ol>
-<li>Create <strong>CSR (Certificate Signing Request)</strong>:</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ openssl genrsa -out my-user.key <span class="m">4096</span>
-$ openssl req -new -key my-user.key -out my-user.csr -subj <span class="s2">&#34;/CN=my-user/O=my-organisation/DC=domain/DC=es&#34;</span>
-</code></pre></div><blockquote>
-<p>Note that <em>my-user</em> is the CN (Common Name) of the signed certificate. The other fields are not necessary but convenient.</p>
-</blockquote>
-<ol start="2">
-<li><strong>Sign the CSR</strong> with the cluster CA (Certification Authority):</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ openssl x509 -req -in my-user.csr -CA /etc/kubernetes/ssl/ca.crt -CAkey /etc/kubernetes/ssl/ca.key -CAcreateserial -out my-user.crt -days <span class="m">356</span>
-</code></pre></div><ol start="3">
-<li><strong>Create a Role</strong> for the User Account:</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Suggestion: Deployer</span>
-$ kubectl -n my-namespace create role deployer --verb<span class="o">=</span>create,get,delete,list,update,watch,patch --resource<span class="o">=</span>deployments,replicasets,statefulsets,configmaps,pods,secrets,ingresses
-<span class="c1"># Suggestion: Developer</span>
-$ kubectl -n my-namespace create role developer --verb<span class="o">=</span>get,list,watch --resource<span class="o">=</span>*
-</code></pre></div><ol start="4">
-<li>Create the <strong>RoleBindings</strong>:</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># For User Accounts</span>
-$ kubectl -n my-namespace create rolebinding deployer --user<span class="o">=</span>my-user --role<span class="o">=</span>deployer
-$ kubectl -n my-namespace create rolebinding developer --user<span class="o">=</span>my-user --role<span class="o">=</span>developer
-</code></pre></div><ol start="5">
-<li>Configure a <strong>Context</strong> for kubectl:</li>
-</ol>
-<ul>
-<li>Retrieve cluster CA certificate:</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># From cluster admin</span>
-$ kubectl -n kube-system get configmaps extension-apiserver-authentication -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.client-ca-file}&#39;</span> &gt; ca.crt
+<p>Here you will find documentation about installing and configuring the <a href="https://kubernetes.github.io/ingress-nginx/"><strong>Nginx Ingress Controller</strong></a>.</p>
+<p>As described in the <a href="https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal"><strong>bare-metal section</strong></a>, first step is to deploy the controller:</p>
+<pre><code>$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.2/deploy/static/provider/baremetal/deploy.yaml
+</code></pre><p>Once the deployment has finished, you will see the followings resources:</p>
+<pre><code>$ kubectl -n ingress-nginx get all
+NAME                                            READY   STATUS      RESTARTS   AGE
+pod/ingress-nginx-admission-create-w4spq        0/1     Completed   0          5d18h
+pod/ingress-nginx-admission-patch-7zw79         0/1     Completed   0          5d18h
+pod/ingress-nginx-controller-5dbd9649d4-wr2bh   1/1     Running     0          5d18h
 
-<span class="c1"># Test from client</span>
-$ curl --cacert ca.crt https://&lt;CLUSTER_IP&gt;:6443/
-<span class="o">{</span>
-  <span class="s2">&#34;kind&#34;</span>: <span class="s2">&#34;Status&#34;</span>,
+NAME                                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+service/ingress-nginx-controller             NodePort    10.233.45.254   &lt;none&gt;        80:32259/TCP,443:31225/TCP   5d18h
+service/ingress-nginx-controller-admission   ClusterIP   10.233.12.164   &lt;none&gt;        443/TCP                      5d18h
+
+NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/ingress-nginx-controller   1/1     1            1           5d18h
+
 ...
-  <span class="s2">&#34;message&#34;</span>: <span class="s2">&#34;forbidden: User \&#34;system:anonymous\&#34; cannot get path \&#34;/\&#34;&#34;</span>,
-...
-<span class="o">}</span>
-</code></pre></div><ul>
-<li>Create the Context in your kubeconfig:</li>
-</ul>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create the Cluster</span>
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config set-cluster my-cluster --server<span class="o">=</span>https://&lt;CLUSTER_IP&gt;:6443 --certificate-authority<span class="o">=</span>/path/to/my-cluster.ca.crt
-<span class="c1"># Create the Credencials</span>
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config set-credentials my-user --client-certificate<span class="o">=</span>/path/to/my-user.crt --client-key<span class="o">=</span>/path/to/my-user.key
-<span class="c1"># Create the Context &amp; Switch to the context</span>
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config set-context my-cluster-my-user --cluster<span class="o">=</span>my-cluster --user<span class="o">=</span>my-user --namespace<span class="o">=</span>my-ns
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config use-context my-cluster-my-user
-</code></pre></div><blockquote>
-<p>In order to make use of this configuration files, it might be useful to add these lines to <code>.bashrc</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;export KUBECONFIG=&#34;$HOME/.kube/config:&#34;$(find &#34;$HOME/.kube&#34; -name &#34;*.config&#34; | paste -s -d &#34;:&#34;)&#39;</span> &gt;&gt; ~/.bashrc
-</code></pre></div></blockquote>
-<div class="gdoc-page__anchorwrap"><h2 id="creating-service-accounts-and-clusterroles">Creating Service Accounts and ClusterRoles<a data-clipboard-text="/geekdoc/wiki/Kubernetes/rbac/" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Creating Service Accounts and ClusterRoles" href="#creating-service-accounts-and-clusterroles"><svg class="icon link"><use xlink:href="#link"></use></svg></a></h2></div>
-<ol>
-<li>Create the <strong>Service Account</strong> and save the <strong>generated token</strong>.</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl -n my-ns create serviceaccount admin
-$ kubectl -n my-ns describe serviceaccounts admin
-...
-Tokens:              admin-token-7vpn5
-...
-$ kubectl -n some-ns get secret admin-token-7vpn5 -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.data.token}&#39;</span> <span class="p">|</span> base64 -d &gt; admin-token.txt
-</code></pre></div><ol start="2">
-<li>Create the <strong>ClusterRoleBinding</strong>.</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl create clusterrolebinding admin --clusterrole<span class="o">=</span>cluster-admin --serviceaccount<span class="o">=</span>my-ns:admin
-</code></pre></div><ol start="3">
-<li>Configure the <strong>Context</strong>.</li>
-</ol>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create the Cluster</span>
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config set-cluster my-cluster --server<span class="o">=</span>https://&lt;CLUSTER_IP&gt;:6443 --certificate-authority<span class="o">=</span>/path/to/my-cluster.ca.crt
-<span class="c1"># Create the Credential</span>
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config set-credentials admin --token<span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>cat admin-token.txt<span class="k">)</span><span class="s2">&#34;</span>
-<span class="c1"># Create the Context &amp; Switch to the context</span>
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config set-context my-cluster-admin --cluster<span class="o">=</span>my-cluster --user<span class="o">=</span>admin --namespace<span class="o">=</span>my-ns
-$ kubectl config --kubeconfig<span class="o">=</span><span class="nv">$HOME</span>/.kube/my-cluster.config use-context my-cluster-admin
-</code></pre></div>
+</code></pre><p>That means that <strong>Nginx Controller is reachable through a NodePort service</strong>. In order to balance the traffic between alll the nodes in the cluster, <strong>we will use an external Nginx</strong> as a Reverse Proxy. Using docker-compose, the needed configuration could be the following:</p>
+<pre><code># ./docker-compose.yml
+services:
+  nginx-proxy:
+    image: nginx
+    restart: always
+    ports:
+      - &quot;80:80&quot;
+      - &quot;443:443&quot;
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl
+</code></pre><pre><code># ./nginx.conf
+events {}
+http {
+  upstream controller {
+    server node1:32259 weight=3;
+    server node2:32259;
+  }
+
+  server {
+    listen 80;
+    listen 443 ssl;
+
+    ssl_certificate /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
+
+    location / {
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_pass http://controller;
+    }
+  }
+}
+</code></pre><p>Now that your DNS wildcard (e.g. <code>*.apps.domain.es</code>) points to the balancer, docker-compose can be started:</p>
+<pre><code>$ docker-compose up -d
+</code></pre>
 
     </article>
 
