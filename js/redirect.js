@@ -1,5 +1,5 @@
 var dst="";
-if (window.location.href.indexOf("offensive-tor-toolkit") > -1) {
+if (window.location.pathname.indexOf("offensive-tor-toolkit") > -1) {
 	dst = "https://atorrescogollo.gitbook.io/offensive-tor-toolkit/";
 }
 else {
